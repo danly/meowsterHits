@@ -1,0 +1,37 @@
+.boardSpace {
+	background-color: skyblue;
+	height: 700px;
+	width: 700px;
+}
+
+.minor {
+	height: 100px;
+	width: 100px;
+	color: white;
+	font-size: 50px;
+	background-color: black;
+	margin: 25px;
+	text-align: center;
+	line-height: 100px;
+	display: inline-block;
+	border-radius: 25px;
+}
+
+.current {
+	height: 100px;
+	width: 100px;
+	color: white;
+	font-size: 50px;
+	background-color: red;
+	margin: 25px;
+	text-align: center;
+	line-height: 100px;
+	display: inline-block;
+	border-radius: 25px;
+}
+
+button {
+	height: 75px;
+	width: 300px;
+	font-size: 25px;
+}
