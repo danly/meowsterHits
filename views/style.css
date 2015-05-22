@@ -1,0 +1,55 @@
+body, html {
+	margin: 0px;
+	padding: 0px;
+}
+
+.boardSpace {
+	background-color: skyblue;
+	height: 750px;
+	width: 750px;
+	margin: 0 auto;
+}
+.current, .minor {
+	height: 75px;
+	width: 150px;
+	background-color: black;
+	text-align: center;
+	line-height: 75px;
+	display: inline-block;
+	border-radius: 25px;
+	border: 5px solid orange;
+}
+
+.column {
+	width: 150px;
+	height: 500px;
+	margin: 0 auto;
+	padding: 0px;
+	float: center;
+	display: inline-block;
+	position: relative;
+	left: 300px;
+}
+
+.column2 {
+	width: 150px;
+	height: 500px;
+	margin: 0 auto;
+	padding: 10px;
+	display: inline-block;
+	position: relative;
+	left: 500px;
+
+}
+
+
+
+
+button {
+	height: 75px;
+	width: 300px;
+	font-size: 25px;
+}
+
+
+
