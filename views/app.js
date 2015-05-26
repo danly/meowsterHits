@@ -2,7 +2,7 @@ function Game () {
 	// creates a new instance of blocks for current game
 	this.stacks = new Stacks();
 	this.board = new Board();
-	this.timer = new Timer();
+	// this.timer = new Timer();
 
 
 
@@ -15,20 +15,43 @@ function Game () {
 
 
 	Game.prototype.init = function () {
+		// $('#runner').runner('start');  //starts the stopwatch
+
+
 		var that = this;
 
 		$(this.board.nextButton).click(function (event) {
+
 			that.stacks.shuffledStacks = that.board.nextStack(that.stacks.shuffledStacks);
+
+			if (that.stacks.shuffledStacks.length === 0) {
+				console.log("FINISHED")
+				$(that.board.nextButton).off('click')
+				$(that.board.decreaseButton).off('click')
+			}
+
+
 		})
 
 
 
 		$(this.board.decreaseButton).click(function (event) {
 			that.stacks.shuffledStacks = that.board.decrease(that.stacks.shuffledStacks);
+			if (that.stacks.shuffledStacks === "lose") {
+				console.log("YOU LOSE");
+				$(that.board.nextButton).off('click')
+				$(that.board.decreaseButton).off('click')
+
+			}
+
+		})
+
+		$('.retry').click(function (event) {
+			//starts a new game and initializes it
+			that.board.retry();
 		})
 
 	}
-
 
 
 // ---------------------------------------------------
@@ -50,7 +73,6 @@ function Stacks () {
 
 
 	this.shuffledStacks = shuffleArr(this.unshuffledStacks);
-
 }
 
 
@@ -104,7 +126,8 @@ function Board () {
 
 
 		} else {
-			console.log("YOU LOSE");
+			stackInstance = "lose";
+			return stackInstance;
 		}
 
 	};
@@ -126,15 +149,21 @@ function Board () {
 		}
 	};
 
+	Board.prototype.retry = function () {
+		var game = new Game();
+		game.init();
+	}
+
 
 
 
 // ---------------------------------------------------
 
-function Timer () {
+// function StopWatch () {
+// 	this.timer = createTimer();
+	
 
-
-}
+// }
 
 
 
