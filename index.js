@@ -3,6 +3,7 @@ var express = require("express"),
 	path = require("path");
 
 var db = require("./models");
+var session = require("express-session");
 
 app = express();
 app.use(bodyParser.urlencoded({extended: true}));
