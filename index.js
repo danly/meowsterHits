@@ -11,6 +11,36 @@ app.use(bodyParser.urlencoded({extended: true}));
 //if can't find something looks in bower_components folder
 app.use(express.static("bower_components"));
 
+app.use(session ({
+	secret: "SUPER STUFF",
+	resave: false,
+	saveUninitialized: true
+}));
+
+var loginHelpers = function (req, res, next) {
+	req.login = function (user) {
+		req.session.userId = user._id;
+		req.user = user;
+		return user;
+	};
+
+	req.logout = function () {
+		req.session.userId = null;
+		req.user = null;
+	};
+
+	req.currentuser = function (cb) {
+		var userId = req.session.userId;
+		db.User.
+			findOne({
+				_id: userId
+			}, cb);
+	};
+
+	next();
+};
+
+app.use(loginHelpers);
 
 
 var views = path.join(__dirname, "views");
@@ -32,7 +62,8 @@ app.post("/users", function (req, res) {
 	db.User.
 	createSecure(newUser, function (err, user) {
 		if (user) {
-			res.send(user);
+			req.login(user);
+			res.redirect("/profile");
 		} else {
 			res.redirect("/");
 		}
@@ -48,6 +79,7 @@ app.post("/", function (req, res) {
 	authenticate(user,
 	function (err, user) {
 		if (!err) {
+			req.login(user);
 			res.redirect("/profile");
 		} else {
 			res.redirect("/");
@@ -55,8 +87,22 @@ app.post("/", function (req, res) {
 	})
 })
 
+app.get("/logout", function (req, res) {
+	req.logout();
+	res.redirect("/");
+});
+
+
+
+
 app.get("/profile", function (req, res) {
-  res.send("COMING SOON");
+	req.currentUser(function (err, user) {
+		if (!err) {
+			res.send(user.email);
+		} else {
+			res.redirect("/");
+		}
+	});	
 });
 
 
