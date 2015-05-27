@@ -1,0 +1,21 @@
+{
+  "name": "smashterHits",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/danlyg/smashterHits",
+  "authors": [
+    "danlyg <gih.daniel@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "bootstrap-validator": "~0.8.1"
+  }
+}

@@ -9,7 +9,7 @@ function Game () {
 
 
 	Game.prototype.init = function () {
-		
+
 
 
 
@@ -235,5 +235,6 @@ function Board () {
 $(function(){
 	var game = new Game();
 	game.init();
+
 
 });

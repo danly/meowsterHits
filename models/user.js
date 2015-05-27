@@ -1,6 +1,5 @@
 var mongoose = require("mongoose");
 
-
 var userSchema = new mongoose.Schema({
 						email: {
 							type: String,
@@ -20,11 +19,33 @@ var userSchema = new mongoose.Schema({
 						}
 });
 
+
+var bcrypt = require("bcrypt");
+
+//confirms if password is the same
+var confirm = function (password, passwordConfirm) {
+	return password === passwordConfirm;
+};
+
+
+userSchema.statics.createSecure = function (params, cb) {
+	var isConfirmed;
+
+	isConfirmed = confirm(params.password, params.password_confirmation);
+
+	if (!isConfirmed) {
+		return cb(console.log("Passwords Should Match"), null);
+	};
+
+	var that = this;
+
+	bcrypt.hash(params.password, 12, function (err, hash) {
+		params.passwordDigest = hash;
+		that.create(params, cb);
+	});
+
+};
+
+
 var User = mongoose.model("User", userSchema);
-
-
-
-
-
-
 module.exports = User;

@@ -5,6 +5,10 @@ var express = require("express"),
 app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
+//if can't find something looks in bower_components folder
+app.use(express.static("bower_components"));
+
+
 
 var views = path.join(__dirname, "views");
 

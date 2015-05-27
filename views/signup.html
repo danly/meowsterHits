@@ -1,1 +1,64 @@
-signup.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign Up</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+
+	<!-- Bootstrap stuff -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	<!-- Bootstrap validator -->
+	<script type="text/javascript" src="/bootstrap-validator/js/validator.js"></script>
+
+
+</head>
+<body>
+
+	<form method="POST" action="/users" data-toggle="validator" role="form">
+
+		<div class="form-group">
+
+		    <label for="inputName" class="control-label">Username</label>
+
+		    <input type="text" name="user[username]" class="form-control" id="inputName" placeholder="Username" required>
+
+		</div>
+
+
+		<div class="form-group">
+
+		    <label for="inputEmail" class="control-label">Email</label>
+
+		    <input type="email" name="user[username]" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
+		    <div class="help-block with-errors"></div>
+
+	  	</div>
+
+    	<label for="inputPassword" class="control-label">Password</label>
+		<div class="form-group">
+
+			<div class="form-group col-sm-6">
+			    <input type="password" name="user[password]" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+			    <span class="help-block">Minimum of 6 characters</span>
+	    	</div>
+
+	    	<div class="form-group col-sm-6">
+
+     			<input type="password" name="user[password_confirmation]" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
+
+      			<div class="help-block with-errors"></div>
+
+    		</div>
+
+    	</div>
+ 
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary">Submit</button> 
+		</div>
+
+  	</form>
+</body>
+</html>
