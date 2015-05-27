@@ -59,7 +59,7 @@ userSchema.methods.checkPswrd = function(password, cb) {
     	cb(null, user);
     } else {
 
-    	cb(console.log("OOPS"), null);
+    	cb("OOPS", null);
     }
   });
 };

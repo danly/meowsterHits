@@ -33,15 +33,30 @@ app.post("/users", function (req, res) {
 		if (user) {
 			res.send(user);
 		} else {
-			res.redirect("/signup");
+			res.redirect("/");
 		}
 	});
 });
 
 
+//login is on home page
+app.post("/", function (req, res) {
+	var user = req.body.user;
 
+	db.User.
+	authenticate(user,
+	function (err, user) {
+		if (!err) {
+			res.redirect("/profile");
+		} else {
+			res.redirect("/");
+		}
+	})
+})
 
-
+app.get("/profile", function (req, res) {
+  res.send("COMING SOON");
+});
 
 
 
