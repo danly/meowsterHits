@@ -1,0 +1,209 @@
+.overall {
+	border-bottom: 5px solid gray;
+	margin-bottom: 25px;
+}
+
+h1 {
+	float: left;
+	margin: 0;
+	margin-top: 20px;
+	margin-left: 10px;
+}
+
+.header {
+	margin-left: auto;
+	margin-right: 0;
+/*	border: 1px solid black;*/
+	overflow: hidden;
+	width: 500px;
+}
+
+.header form{
+	float: right;
+}
+
+.header form .login {
+	float: left;
+	border-radius: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 20px;
+}
+
+.header form button.login{
+	background-color: skyblue;
+	border-color: white;
+	outline: none;
+}
+
+.signup {
+	margin-left: auto;
+	margin-right: 175px;
+	margin-bottom: 10px;
+
+	/*border: 1px solid black;*/
+	width: 100px;
+	text-align: center;
+
+}
+
+
+
+
+
+#board{
+	border: 3px solid black;
+	
+	overflow: hidden; /*prevents floated items from collasping the container*/
+	width: 500px;
+	height: 350px;
+	position: relative;
+	margin: 0 auto;
+	background-color: limegreen;
+}
+
+#board .stack{
+	width: 150px;
+
+	position: absolute;
+	bottom: 0px; /*sets the the stack to the bottom of the div*/
+
+
+}
+
+#board .stack.current {
+	left: 175px;
+}
+
+#board .stack.minor {
+	left: 425px;
+}
+
+#board .stack .block {
+	border: 2px solid black;
+	border-radius: 10px;
+	height: 50px;
+	/*background: radial-gradient(white, green, white);*/
+	background: linear-gradient(
+      to top left, 
+      orange, #FFFFCC
+    );
+
+	
+}
+
+#board #timer{
+	float: right;
+	font-size: 35px;
+	margin-right: 10px;
+}
+
+#board #stackCount {
+	float: left;
+	font-size: 35px;
+	margin-left: 10px;
+}
+
+
+
+
+
+
+/*start button*/
+.overlay.start {
+	height: 200px;
+	width: 100%;
+	background-color: rgba(0,0,0,0.54);
+	position: relative;
+	top: 28px;
+	z-index:5;
+	overflow: hidden;
+}
+
+.overlay.start .startButton {
+	position: absolute;
+	width: 200px;
+	height: 80px;
+	border-radius: 15px;
+	left: 150px;
+	top: 60px;
+	background-color: cornsilk;
+	outline: none;
+	font-size: 50px;
+}
+
+.neko{
+	
+	width: 100%;
+}
+
+.badge.countdown {
+	width: 250px;
+	height: 250px;
+	border: 8px solid firebrick;
+	border-radius: 150px;
+	background-color: cornsilk;
+	color: firebrick;
+
+	z-index: 10;
+	position: absolute;
+ 	left: 125px;
+ 	top: 50px;
+
+ 	display: none;
+}
+
+.badge.countdown .countdown {
+	margin-top: 25px;
+	font-size: 150px;
+}
+
+
+
+/*finished*/
+.overlay.finish {
+	height: 200px;
+	width: 100%;
+	background-color: rgba(0,0,0,0.54);
+	position: relative;
+	top: 28px;
+	z-index:10;
+	overflow: hidden;
+	display: none;
+}
+
+.overlay.finish .finish {
+	position: relative;
+	margin-top: 50px;
+	color: white;
+	font-size: 50px;
+	text-align: center;
+}
+
+.overlay.finish .finishTime{
+	color: white;
+	font-size: 40px;
+	text-align: center;
+}
+
+/*lose*/
+.overlay.lose {
+	height: 200px;
+	width: 100%;
+	background-color: rgba(0,0,0,0.54);
+	position: relative;
+	top: 28px;
+	z-index:10;
+	overflow: hidden;
+	display: none;
+}
+
+.overlay.lose .lose {
+	position: relative;
+	margin-top: 80px;
+	color: white;
+	font-size: 50px;
+	text-align: center;
+}
+
+

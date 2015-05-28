@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Smashter Hits - Profile</title>
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+	<!-- Underscore -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/profile.css">
+</head>
+<body>
+	<div class="heading">
+		<h1 class="username">[Username]</h1>
+	</div>
+	<div class="backbutton">
+		<button type="button" class="btn btn-primary btn-lg">Back</button>
+	</div>
+
+
+	<div class="score">
+		<h2>Personal Scores</h3>
+		<h3>Top 10</h4>
+
+		<table class="table table-hover">
+			<tr class="row">
+				<th>#</th>
+				<th>Time</th>
+			</tr>
+			<tr class="row">
+				<td>1</td>
+				<td>25.29</td>
+			</tr>
+			<tr class="row">
+				<td>2</td>
+				<td id="score2">25.29</td>
+			</tr>
+			<tr class="row">
+				<td>3</td>
+				<td id="score3">25.29</td>
+			</tr>			
+		</table>
+
+
+	</div>
+
+
+
+
+
+
+</body>
+
+<!-- use template to create a profile page -->
+
+<!-- Underscore template -->
+<script type="text/template" id="words-template">
+	<h1> <%= item.username %> </h1>
+	<h3>Top 10 Personal Scores</h3>
+
+// work on this	HEREEREHREHREHREHHRH
+	<li class='list-group-item' title="<%= item._id %>">
+	<%= item.name %>
+	<span class="label label-default"><%= item.definition %></span>
+	<button data-_id="<%= item._id %>" onclick="Word.delete(this)" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	</li>
+</script>
+
+
+
+
+
+</html>

@@ -1,0 +1,13 @@
+.backbutton {
+	position: relative;
+  	text-align: right;
+  	margin: 0 auto;
+
+}
+body {
+	margin: 50px;
+}
+
+.table {
+	font-size: 20px;
+}

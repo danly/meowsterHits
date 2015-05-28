@@ -11,6 +11,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 //if can't find something looks in bower_components folder
 app.use(express.static("bower_components"));
 
+
+app.use(express.static("public"));
+
+
+
 app.use(session ({
 	secret: "SUPER STUFF",
 	resave: false,
@@ -43,7 +48,7 @@ var loginHelpers = function (req, res, next) {
 app.use(loginHelpers);
 
 
-var views = path.join(__dirname, "views");
+var views = path.join(__dirname, "public/views");
 
 app.get("/", function (req, res) {
 	var indexPath = path.join(views, "index.html");
@@ -96,15 +101,18 @@ app.get("/logout", function (req, res) {
 
 
 app.get("/profile", function (req, res) {
-	req.currentUser(function (err, user) {
-		if (!err) {
-			res.send(user.email);
-		} else {
-			res.redirect("/");
-		}
-	});	
-});
 
+	var profilePath = path.join(views, "profile.html");
+	res.sendFile(profilePath);
+
+	// req.currentUser(function (err, user) {
+	// 	if (!err) {
+	// 		res.send(user.email);
+	// 	} else {
+	// 		res.redirect("/");
+	// 	}
+	// });	
+});
 
 
 
