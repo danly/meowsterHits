@@ -176,12 +176,12 @@ function Game () {
 
 				//reset button event
 
-				$('.reset').click(function (event) {
-					that.reset(that, time);
-				})
 				// ------------------------------------
 				
 			}, 3000)
+				$('.reset').click(function (event) {
+					that.reset(that, gamestart);
+				})
 
 		})
 
