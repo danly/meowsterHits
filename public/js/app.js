@@ -15,8 +15,8 @@ function Game () {
 
 		var that = this;
 
-
 		$('.start').click(function (event) {
+
 			$(".overlay.start").hide()
 			//build the first stack
 			that.stacks.buildCurrent(that.stacks.shuffledStacks)
@@ -30,7 +30,6 @@ function Game () {
 			$(".badge.countdown").fadeIn(500);
 			var n = 2;
 			var countdown = setInterval(function(){
-
 				if(n===2){
 					$(".badge.countdown .countdown").html("2");
 				} else if(n===1){
@@ -82,6 +81,7 @@ function Game () {
 						that.stacks.buildCurrent(that.stacks.shuffledStacks);
 
 						that.stacks.buildMinor(that.stacks.shuffledStacks);
+
 						$('#stackCount').html(that.stacks.shuffledStacks.length)
 
 					} else if (that.stacks.shuffledStacks.length === 0) {
@@ -175,10 +175,10 @@ function Game () {
 
 
 				//reset button event
-				$('.reset').click(function (event) {
-					that.reset(that, time)
-				})
 
+				$('.reset').click(function (event) {
+					that.reset(that, time);
+				})
 				// ------------------------------------
 				
 			}, 3000)
@@ -195,8 +195,8 @@ function Game () {
 		that.stacks.reset();
 
 
-		//puts back start button and hides other overlays
-		$(".overlay.start").fadeIn()		
+		//puts back start button and hides other overlays		
+		$(".overlay.start").fadeIn()
 		$(".overlay.finish").hide();
 		$(".overlay.lose").hide();
 
@@ -205,6 +205,7 @@ function Game () {
 		$('#stackCount').html('30')
 		//clears anything that is still within the current and minor stacks
 		$(".stack.current .block").remove()
+		$(".stack.current .neko").remove()
 		$(".stack.minor .block").remove()
 
 
@@ -212,7 +213,6 @@ function Game () {
 		clearInterval(time);
 		$('#timer').html('0.00')
 		that.currentTime = 0;
-		return that.currentTime;
 	};
 
 
@@ -250,6 +250,7 @@ function Stacks () {
 	};
 
 	Stacks.prototype.buildCurrent = function (stacksArr) {
+		$(".stack.current").prepend("<img src='../images/neko.png' class='neko'>")
 		if(stacksArr.length === 30){
 			counter = stacksArr[0]
 			for (var i = 0; i<counter; i++){
@@ -270,7 +271,7 @@ function Stacks () {
 				$("<div class='block'></div>").hide().appendTo(".stack.minor").fadeIn()
 			};
 		} else {
-			$(".stack.minor .block").remove()
+			$(".stack.minor .block").remove();		
 			counter = stacksArr[1]
 			for (var i = 0; i<counter; i++){
 				$(".stack.minor").append("<div class='block'></div>");
@@ -318,7 +319,10 @@ function Board () {
 		if(stackInstance[0] !== 0) {
 			stackInstance[0] = stackInstance[0]-1;
 			console.log(stackInstance);
-			$(".stack.current .block").last().remove()
+			$(".stack.current .block").last().slideToggle(80, function () {
+					$(this).remove();
+			});
+
 
 			return stackInstance;
 
@@ -336,12 +340,17 @@ function Board () {
 		if(stackInstance[0] === 0) {
 			stackInstance.shift();
 			console.log(stackInstance);
+			$(".stack.current .neko").css({"position": "absolute", "bottom": "0px"})
+			$(".stack.current .neko").animate({"right": "+=300px"}, 80, function () {
+				$(this).remove();
+			});
+
 			return stackInstance;
 
 
 		} else {
 			console.log("DID NOTHING");
-			
+			//do a meow thing
 			console.log(stackInstance);
 			return stackInstance;
 		}

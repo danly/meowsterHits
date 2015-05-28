@@ -139,9 +139,19 @@ h1 {
 }
 
 .neko{
-	
+	position: relative;
 	width: 100%;
+	z-index: 2;
 }
+
+/*.whoosh{
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	left: 325px;
+	bottom: 100px;
+}*/
+
 
 .badge.countdown {
 	width: 250px;
@@ -247,13 +257,14 @@ h1 {
 .commands button {
 	background-color: cornsilk;
 	color: firebrick;
-	border-width: 5px;
+	border-width: 7px;
 	border-radius: 10px;
 	border-color: firebrick;
 	width: 150px;
 	height: 60px;
 	font-size: 20px;
 	margin: 10px 30px;
+	outline: none;
 }
 
 .instructions {
