@@ -79,17 +79,25 @@ app.post("/users", function (req, res) {
 //login is on home page
 app.post("/", function (req, res) {
 	var user = req.body.user;
+	var userEmail = user.email;
 
-	db.User.
-	authenticate(user,
-	function (err, user) {
-		if (!err) {
-			req.login(user);
-			res.redirect("/profile");
-		} else {
-			res.redirect("/");
-		}
-	})
+	if (userEmail) {
+		db.User.
+		authenticate(user,
+		function (err, user) {
+			if (!err) {
+				req.login(user);
+				res.redirect("/profile");
+			} else {
+				// res.sendStatus(401);
+				res.redirect('/')
+			}
+		})
+	} else {
+		res.redirect('/')
+	}
+
+
 })
 
 app.get("/logout", function (req, res) {
@@ -99,20 +107,28 @@ app.get("/logout", function (req, res) {
 });
 
 
+app.get("/profile.json", function (req, res) {
+	req.currentuser(function (err, user){
+		if (user) {
+			console.log(user)
+			res.send(JSON.stringify(user));
+		} else {
+			res.sendStatus(404)
+		}
+	})
+})
 
 
 app.get("/profile", function (req, res) {
+	req.currentuser(function (err, user) {
+		if (user) {
+			var profilePath = path.join(views, "profile.html");
+			res.sendFile(profilePath);
+		} else {
+			res.sendStatus(404)
+		}
+	})
 
-	var profilePath = path.join(views, "profile.html");
-	res.sendFile(profilePath);
-
-	// req.currentUser(function (err, user) {
-	// 	if (!err) {
-	// 		res.send(user.email);
-	// 	} else {
-	// 		res.redirect("/");
-	// 	}
-	// });	
 });
 
 
