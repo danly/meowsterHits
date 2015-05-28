@@ -207,6 +207,8 @@ function Game () {
 		$(".stack.current .block").remove()
 		$(".stack.current .neko").remove()
 		$(".stack.minor .block").remove()
+		$(".overlay.finish .finishTime").remove()
+
 
 
 		//stops the timer and resets it
