@@ -77,7 +77,7 @@ function Game () {
 						that.stacks.buildCurrent(that.stacks.shuffledStacks);
 
 						that.stacks.buildMinor(that.stacks.shuffledStacks);
-
+						$('#stackCount').html(that.stacks.shuffledStacks.length)
 
 					} else if (that.stacks.shuffledStacks.length === 0) {
 						console.log("FINISHED")
@@ -103,6 +103,8 @@ function Game () {
 							that.stacks.shuffledStacks = that.board.nextStack(that.stacks.shuffledStacks);
 							that.stacks.buildCurrent(that.stacks.shuffledStacks);
 							that.stacks.buildMinor(that.stacks.shuffledStacks);
+							$('#stackCount').html(that.stacks.shuffledStacks.length)
+
 						} else if (that.stacks.shuffledStacks.length === 0) {
 							console.log("FINISHED")
 							$(".overlay.finish").show(750)
@@ -143,13 +145,14 @@ function Game () {
 					//key k
 					if (event.keyCode == 75) {
 						that.stacks.shuffledStacks = that.board.decrease(that.stacks.shuffledStacks);
-					} else if (that.stacks.shuffledStacks === "lose") {
-						console.log("YOU LOSE");
-						$(".overlay.lose").show(750)
-						clearInterval(time);
-						$(that.board.nextButton).off('click')
-						$(that.board.decreaseButton).off('click')
-						$(document).off('keyup');
+						if (that.stacks.shuffledStacks === "lose") {
+							console.log("YOU LOSE");
+							$(".overlay.lose").show(750)
+							clearInterval(time);
+							$(that.board.nextButton).off('click')
+							$(that.board.decreaseButton).off('click')
+							$(document).off('keyup');
+						}
 					}
 				});
 
@@ -171,9 +174,16 @@ function Game () {
 					that.board.reset();
 					that.stacks.reset();
 
+
+					//puts back start button and hides other overlays
 					$(".overlay.start").fadeIn()		
 					$(".overlay.finish").hide();
 					$(".overlay.lose").hide();
+
+
+					//resets stacks
+					$('#stackCount').html('30')
+
 
 					//stops the timer and resets it
 					clearInterval(time);
