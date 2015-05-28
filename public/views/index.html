@@ -40,17 +40,17 @@
 	
 
 	<div id="board">
-	<div><span id="timer">0.00</span></div>
-	<div><span id="stackCount">30</span></div>
+		<div><span id="timer">0.00</span></div>
+		<div><span id="stackCount">30</span></div>
 
 
-	<div class="overlay start">
-		<button class="startButton"><strong>START</strong></button>
-	</div>
+		<div class="overlay start">
+			<button class="startButton"><strong>START</strong></button>
+		</div>
 
-	<div class="badge countdown">
-		<h2 class="countdown"></h2>
-	</div>
+		<div class="badge countdown">
+			<h2 class="countdown"></h2>
+		</div>
 
 
 
@@ -63,12 +63,16 @@
 			<img src="../images/neko.png" class="neko">
 		</div>
 
-	<div class="overlay finish">
-		<h3 class="finish">FINISHED</h3>
-	</div>
-	<div class="overlay lose">
-		<h3 class="lose">YOU LOSE</h3>
-	</div>
+		<div class="overlay finish">
+			<h3 class="finish">FINISHED</h3>
+		</div>
+		<div class="overlay lose">
+			<h3 class="lose">YOU LOSE</h3>
+		</div>
+		<div class="overlay timeout">
+			<h3 class="timeout">TIMEOUT</h3>
+			<h4 class='timeout'>You Slowpoke</h4>
+		</div>
 
 	</div>
 
@@ -76,10 +80,30 @@
 
 
 	<div class="commands">
-	<button class="next"><strong>Next</strong> Stack</button>
-	<button class='decrease'><strong>Decrease</strong> Stack</button>
+		<button class="next"><strong>Move Cat</strong></button>
+		<button class='decrease'><strong>Lower Cat</strong></button>
 
-	<div><button class="reset"><strong>retry</strong></button></div>
+		<div><button class="reset"><strong>reset</strong></button></div>
+
+	</div>
+
+
+	<div class="instructions">
+		<h3><strong>HOW TO PLAY</strong></h3>
+
+		<p><strong>Lower </strong>the stacks as fast as possible then <strong>move</strong> the cats to safety</p>
+		
+		<div>
+			<li>Click <strong>"Lower Cat"</strong> to lower the cat</li>
+
+				<li>Or Press <strong>"K"</strong></li>
+
+			<li>Click <strong>"Move Cat"</strong> to move the cat to safety</li>
+			<div>
+				<li>Or Press <strong>"D"</strong></li>
+			</div>
+		</div>
+	</div>
 
 
 </body>

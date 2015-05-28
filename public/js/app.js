@@ -17,20 +17,21 @@ function Game () {
 
 
 		$('.start').click(function (event) {
+			$(".overlay.start").hide()
 			//build the first stack
 			that.stacks.buildCurrent(that.stacks.shuffledStacks)
 			//build the second stack
 			that.stacks.buildMinor(that.stacks.shuffledStacks)
+			
 
 
 			//game start countdown from 3
-			var n = 3;
+			$(".badge.countdown .countdown").html("3");
+			$(".badge.countdown").fadeIn(500);
+			var n = 2;
 			var countdown = setInterval(function(){
-				$(".overlay.start").hide()
-				if(n===3){
-					$(".badge.countdown .countdown").html("3");
-					$(".badge.countdown").fadeIn(500);
-				} else if(n===2){
+
+				if(n===2){
 					$(".badge.countdown .countdown").html("2");
 				} else if(n===1){
 					$(".badge.countdown .countdown").html("1");
@@ -57,7 +58,11 @@ function Game () {
 
 
 					if(Math.floor( $('#timer').html() ) === 100) {
+						$(".overlay.timeout").fadeIn()
 						clearInterval(time);
+						$(that.board.nextButton).off('click')
+						$(that.board.decreaseButton).off('click')
+						$(document).off('keyup');						
 						console.log('TIMEOUT, took too long')
 					}
 
@@ -81,13 +86,14 @@ function Game () {
 
 					} else if (that.stacks.shuffledStacks.length === 0) {
 						console.log("FINISHED")
-						$(".overlay.finish").show(750)
+						$(".overlay.finish").fadeIn()
 						$(".overlay.finish").append("<h4 class='finishTime'>"+$("#timer").html()+"</h4>")
 
 
 						clearInterval(time);
 						$(that.board.nextButton).off('click')
 						$(that.board.decreaseButton).off('click')
+						$(document).off('keyup');
 					}
 				});
 
@@ -107,7 +113,7 @@ function Game () {
 
 						} else if (that.stacks.shuffledStacks.length === 0) {
 							console.log("FINISHED")
-							$(".overlay.finish").show(750)
+							$(".overlay.finish").fadeIn()
 							$(".overlay.finish").append("<h4 class='finishTime'>"+$("#timer").html()+"</h4>")
 
 							clearInterval(time);
@@ -131,7 +137,7 @@ function Game () {
 					that.stacks.shuffledStacks = that.board.decrease(that.stacks.shuffledStacks);
 					if (that.stacks.shuffledStacks === "lose") {
 						console.log("YOU LOSE");
-						$(".overlay.lose").show(750)
+						$(".overlay.lose").fadeIn()
 						clearInterval(time);
 						$(that.board.nextButton).off('click')
 						$(that.board.decreaseButton).off('click')
@@ -147,7 +153,7 @@ function Game () {
 						that.stacks.shuffledStacks = that.board.decrease(that.stacks.shuffledStacks);
 						if (that.stacks.shuffledStacks === "lose") {
 							console.log("YOU LOSE");
-							$(".overlay.lose").show(750)
+							$(".overlay.lose").fadeIn()
 							clearInterval(time);
 							$(that.board.nextButton).off('click')
 							$(that.board.decreaseButton).off('click')
@@ -170,37 +176,44 @@ function Game () {
 
 				//reset button event
 				$('.reset').click(function (event) {
-					//starts a new game and initializes it
-					that.board.reset();
-					that.stacks.reset();
-
-
-					//puts back start button and hides other overlays
-					$(".overlay.start").fadeIn()		
-					$(".overlay.finish").hide();
-					$(".overlay.lose").hide();
-
-
-					//resets stacks
-					$('#stackCount').html('30')
-
-
-					//stops the timer and resets it
-					clearInterval(time);
-					$('#timer').html('0.00')
-					that.currentTime = 0;
+					that.reset(that, time)
 				})
 
 				// ------------------------------------
 				
-			}, 4000)
+			}, 3000)
 
 		})
 
 
+	};
+
+	Game.prototype.reset = function (that, time) {
+		//starts a new game and initializes it
+		console.log('inside reset')
+		that.board.reset();
+		that.stacks.reset();
 
 
-	}
+		//puts back start button and hides other overlays
+		$(".overlay.start").fadeIn()		
+		$(".overlay.finish").hide();
+		$(".overlay.lose").hide();
+
+
+		//resets stacks
+		$('#stackCount').html('30')
+		//clears anything that is still within the current and minor stacks
+		$(".stack.current .block").remove()
+		$(".stack.minor .block").remove()
+
+
+		//stops the timer and resets it
+		clearInterval(time);
+		$('#timer').html('0.00')
+		that.currentTime = 0;
+		return that.currentTime;
+	};
 
 
 // ---------------------------------------------------
@@ -218,10 +231,7 @@ function Stacks () {
 					   4, 4, 4, //3 fours
 					   5, 5, 5, //3 fives
 					   6, 6, 6]; //3 sixes
-
-
-
-	this.shuffledStacks = shuffleArr(this.unshuffledStacks);
+	this.shuffledStacks = this.shuffleArr(this.unshuffledStacks);
 }
 
 
@@ -229,7 +239,14 @@ function Stacks () {
 	// reset the stacks
 	Stacks.prototype.reset = function () {
 		console.log('stacks reset')
-		this.shuffledStacks = shuffleArr(this.unshuffledStacks);
+		this.unshuffledStacks = [0, 0, 0, //3 zeros
+					   1, 1, 1, 1, 1, 1, 1, //7 ones
+					   2, 2, 2, 2, 2, 2, //6 twos
+					   3, 3, 3, 3, 3, //5 threes
+					   4, 4, 4, //3 fours
+					   5, 5, 5, //3 fives
+					   6, 6, 6]; //3 sixes
+		this.shuffledStacks = this.shuffleArr(this.unshuffledStacks);
 	};
 
 	Stacks.prototype.buildCurrent = function (stacksArr) {
@@ -263,8 +280,8 @@ function Stacks () {
 
 
 
-		//fisher-yates shuffle
-		var shuffleArr = function (arr) {
+	//fisher-yates shuffle
+	Stacks.prototype.shuffleArr = function (arr) {
 			var counter = arr.length;
 			var temp;
 			var index;
@@ -277,7 +294,7 @@ function Stacks () {
 				arr[index] = temp;
 			}
 			return arr;
-		}
+	};
 
 
 
