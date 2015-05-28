@@ -143,5 +143,5 @@ app.get("/scores", function (req, res) {
 
 
 app.listen(process.env.PORT || 4000, function () {
-	console.log("Running on 4000!")
+	console.log("Running on", process.env.PORT)
 });
