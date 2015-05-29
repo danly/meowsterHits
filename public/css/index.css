@@ -22,6 +22,7 @@ h1 {
 	margin-right: 0;
 	overflow: hidden;
 	width: 500px;
+	height: 50px;
 }
 
 .header form{
@@ -37,12 +38,14 @@ h1 {
 }
 
 .header form button.login{
-	background-color: skyblue;
-	border-color: white;
+	height: 33px;
+	border-radius: 25px;
+	border-color: bisque;
+	background: snow;
 	outline: none;
 }
 
-.signup {
+.userSignup {
 	margin-left: auto;
 	margin-right: 175px;
 	margin-bottom: 10px;
@@ -276,4 +279,21 @@ h1 {
 .instructions h3{
 	text-align: center;
 
+}
+
+.logout {
+	position: absolute;
+	top: 25px;
+	height: 33px;
+	width: 83px;
+	padding: 0;
+	right: 10px;
+	display: none;
+}
+.logout button{
+	height: 33px;
+	border-radius: 25px;
+	border-color: bisque;
+	background: snow;
+	outline: none;
 }

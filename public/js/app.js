@@ -9,11 +9,9 @@ function Game () {
 
 
 	Game.prototype.init = function () {
-
-
-
-
 		var that = this;
+
+
 
 		$('.start').click(function (event) {
 
@@ -407,7 +405,27 @@ function Board () {
 
 $(function(){
 	var game = new Game();
+
+
+	$.get('/profile.json', function(res){ 
+		var user = JSON.parse(res);
+		if(user.username){
+			removeLogin(user.username)
+		}
+	})
+
 	game.init();
 
+	var removeLogin = function (username){
+			console.log('removing login')
+			$('.logout').show();
+			$(".header form").hide();
+			$(".userSignup").text("Hello " + username)
+			$(".userSignup").css({ "position": "relative",
+								   "overflow": "hidden",
+								   "font-size": "21px",
+								   "margin-bottom": "0px",
+								   "bottom": "25px"})
+		}
 
 });
