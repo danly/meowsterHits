@@ -116,6 +116,16 @@ function Game () {
 							$(".overlay.finish").fadeIn()
 							$(".overlay.finish").append("<h4 class='finishTime'>"+$("#timer").html()+"</h4>")
 
+
+							//take the finishtime here and add it as embedded data to the current user in the session
+
+							// that.addGameTime($('#timer').html()); //adds the finished game time to the user
+
+
+
+
+
+
 							clearInterval(time);
 							$(that.board.nextButton).off('click')
 							$(that.board.decreaseButton).off('click')
@@ -216,6 +226,16 @@ function Game () {
 		$('#timer').html('0.00')
 		that.currentTime = 0;
 	};
+
+
+	Game.prototype.addGameTime = function(finishedTime) {
+		// $.post
+	};
+
+
+
+
+
 
 
 // ---------------------------------------------------

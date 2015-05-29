@@ -6,7 +6,11 @@ $(function () {
 		$(".username").html("Hi " + user.username)
 	});
 
-
+	render(user, "scores-wrapper", "scores-template");
 
 });
 
+var render = function (users, parentId, templateId) {
+	var template = _.template($('#' + templateId).html());
+	$('#' + parentId).html(template({collection: user}));
+}

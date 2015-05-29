@@ -16,6 +16,10 @@ var userSchema = new mongoose.Schema({
 						username: {
 							type: String,
 							default: ""
+						},
+						scores: {
+							type: Number,
+							default: ""
 						}
 });
 

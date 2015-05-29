@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div class="heading">
-		<h1 class="username" id="username-wrapper">[Username]</h1>
+		<h1 class="username">[Username]</h1>
 	</div>
 	<div class="backbutton">
 			<a href="/"><button type="button" class="btn btn-primary btn-lg">Back</button></a>
@@ -26,7 +26,7 @@
 		<h2>Personal Scores</h3>
 		<h3>Top 10</h4>
 
-		<table class="table table-hover">
+		<table class="table table-hover" id="scores-wrapper">
 			<tr class="row">
 				<th>#</th>
 				<th>Time</th>
@@ -37,11 +37,11 @@
 			</tr>
 			<tr class="row">
 				<td>2</td>
-				<td id="score2">25.29</td>
+				<td>25.29</td>
 			</tr>
 			<tr class="row">
 				<td>3</td>
-				<td id="score3">25.29</td>
+				<td>25.29</td>
 			</tr>			
 		</table>
 
@@ -55,17 +55,20 @@
 <!-- use template to create a profile page -->
 
 <!-- Underscore template -->
-<script type="text/template" id="user-template">
-	<h1> <%= user.username %> </h1>
+<script type="text/template" id="scores-template">
+
+	<% collection.forEach(function(user) { %>
+
+		<tr class="row">
+			<td><%= indexOf(user[score][0])+1 %></td> //index of the score +1
+			<td><%= user[score][0] %></td>  // takes the score from the particular index
+		</tr>
+
+ 	<% }); %>
+
 </script>
 
 
-<!-- // // work on this	HEREEREHREHREHREHHRH
-// 	<li class='list-group-item' title="<%= item._id %>">
-// 	<%= item.name %>
-// 	<span class="label label-default"><%= item.definition %></span>
-// 	<button data-_id="<%= item._id %>" onclick="Word.delete(this)" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-// 	</li> -->
 
 
 
