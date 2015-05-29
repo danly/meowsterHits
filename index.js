@@ -1,7 +1,6 @@
 var express = require("express"),
 	bodyParser = require("body-parser"),
 	path = require("path");
-
 var db = require("./models");
 var session = require("express-session");
 
@@ -92,7 +91,9 @@ app.post("/", function (req, res) {
 				// res.sendStatus(401);
 				res.redirect('/')
 			}
-		})
+		}, function () {
+			res.sendStatus(401);
+		});
 	} else {
 		res.redirect('/')
 	}
@@ -132,7 +133,32 @@ app.get("/profile", function (req, res) {
 });
 
 
+app.post("/scores.json", function (req, res){
+	// var newScore = req.body.score
+	var finalScore = req.body;
+	var actualTime = Object.keys(finalScore)[0];
 
+	// console.log('user 2nd test: ', user)
+	console.log('final score', actualTime)
+
+
+	var user = req.currentuser(function (err, user){
+		if (user) {
+			db.User.findOne({email: user.email}, function (err, user) {
+				user.scores.push(actualTime);
+				console.log("user.scores", user.scores);
+				user.save();
+				console.log("user", user)
+			});
+		} else {
+			res.sendStatus(404)
+		}
+	})
+
+	
+
+
+})
 
 
 
@@ -140,6 +166,9 @@ app.get("/scores", function (req, res) {
 	var scoresPath = path.join(views, "scores.html");
 	res.sendFile(scoresPath);
 });
+
+
+
 
 
 app.listen(process.env.PORT || 4000, function () {

@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div class="heading">
-		<h1 class="username">[Username]</h1>
+		<h1 class="username">Username</h1>
 	</div>
 	<div class="backbutton">
 			<a href="/"><button type="button" class="btn btn-primary btn-lg">Back</button></a>
@@ -23,27 +23,10 @@
 
 
 	<div class="score">
-		<h2>Personal Scores</h3>
-		<h3>Top 10</h4>
+		<h2>Personal Scores!</h3>
+		<!-- <h3>Top 10</h4> -->
 
-		<table class="table table-hover" id="scores-wrapper">
-			<tr class="row">
-				<th>#</th>
-				<th>Time</th>
-			</tr>
-			<tr class="row">
-				<td>1</td>
-				<td>25.29</td>
-			</tr>
-			<tr class="row">
-				<td>2</td>
-				<td>25.29</td>
-			</tr>
-			<tr class="row">
-				<td>3</td>
-				<td>25.29</td>
-			</tr>			
-		</table>
+		<table class="table table-hover" id="scoreswrapper"></table>
 
 
 	</div>
@@ -56,16 +39,17 @@
 
 <!-- Underscore template -->
 <script type="text/template" id="scores-template">
-
-	<% collection.forEach(function(user) { %>
-
+	<tr class="row">
+		<th>#</th>
+		<th>Time</th>
+	</tr>
+	<% user.scores = user.scores.sort(function(a, b){return a-b}) %>
+	<% user.scores.forEach(function(score, index){ %>
 		<tr class="row">
-			<td><%= indexOf(user[score][0])+1 %></td> //index of the score +1
-			<td><%= user[score][0] %></td>  // takes the score from the particular index
+			<td><%= index + 1 %></td>
+			<td><%= score %></td>
 		</tr>
-
- 	<% }); %>
-
+	<% }); %>
 </script>
 
 

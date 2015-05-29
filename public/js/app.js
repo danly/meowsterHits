@@ -67,8 +67,10 @@ function Game () {
 
 
 				}, 100)
-
 				// ------------------------------------
+
+
+
 
 				//nextButton event
 				$(that.board.nextButton).click(function (event) {
@@ -88,6 +90,9 @@ function Game () {
 						console.log("FINISHED")
 						$(".overlay.finish").fadeIn()
 						$(".overlay.finish").append("<h4 class='finishTime'>"+$("#timer").html()+"</h4>")
+
+		//take the finishtime here and add it as embedded data to the current user in the session
+							that.addGameTime($('#timer').html()); //adds the finished game time to the user
 
 
 						clearInterval(time);
@@ -118,8 +123,7 @@ function Game () {
 
 
 							//take the finishtime here and add it as embedded data to the current user in the session
-
-							// that.addGameTime($('#timer').html()); //adds the finished game time to the user
+							that.addGameTime($('#timer').html()); //adds the finished game time to the user
 
 
 
@@ -146,7 +150,7 @@ function Game () {
 				$(that.board.decreaseButton).click(function (event) {
 					that.stacks.shuffledStacks = that.board.decrease(that.stacks.shuffledStacks);
 					if (that.stacks.shuffledStacks === "lose") {
-						console.log("YOU LOSE");
+						console.log("YOU LOSE");						
 						$(".overlay.lose").fadeIn()
 						clearInterval(time);
 						$(that.board.nextButton).off('click')
@@ -229,7 +233,8 @@ function Game () {
 
 
 	Game.prototype.addGameTime = function(finishedTime) {
-		// $.post
+		console.log('addGameTime is being called')
+		$.post('/scores.json', finishedTime)
 	};
 
 

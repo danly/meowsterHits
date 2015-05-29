@@ -17,10 +17,10 @@ var userSchema = new mongoose.Schema({
 							type: String,
 							default: ""
 						},
-						scores: {
-							type: Number,
-							default: ""
-						}
+						scores: []
+						// 	type: Number,
+						// 	default: ""
+						// }
 });
 
 
@@ -45,12 +45,16 @@ userSchema.statics.createSecure = function (params, cb) {
 	});
 };
 
-userSchema.statics.authenticate = function (params, cb) {
+userSchema.statics.authenticate = function (params, cb, cb2) {
   	this.findOne({
       	email: params.email
     },
     function (err, user) {
-      	user.checkPswrd(params.password, cb);
+    	if(user){
+      		user.checkPswrd(params.password, cb);
+      	} else {
+      		cb2();
+      	}
     });
 };
 
