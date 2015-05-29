@@ -1,13 +1,54 @@
+body {
+	background: whitesmoke;
+}
+.overall {
+	border-bottom: 2px solid black;
+	margin-bottom: 25px;
+	background: linear-gradient(
+      to top left, 
+      orange, #FFFFCC
+    );
+    overflow: hidden;
+    height: 82px;
+}
+
+.overall h1 {
+	float: left;
+	margin: 0;
+	margin-top: 15px;
+	font-weight: lighter;
+  	font-size: 48px;
+  	margin-left: 12px;
+}
+
+
 .backbutton {
 	position: relative;
   	text-align: right;
   	margin: 0 auto;
-
 }
-body {
-	margin: 50px;
+
+.backbutton button {
+	background: firebrick;
+	border-color: firebrick;
+	outline: none;
+
 }
 
 .table {
 	font-size: 20px;
+}
+
+.table .row{
+	border-top: 1px solid rgba(0, 0, 0, 0.2);
+	font-weight: 300;
+}
+
+.table .row:hover{
+	background-color: rgba(255, 200, 0, 0.2);
+}
+
+.contents{
+
+	margin: 50px;
 }

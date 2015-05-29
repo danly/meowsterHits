@@ -1,0 +1,41 @@
+body {
+	background: whitesmoke;
+}
+
+.overall {
+	border-bottom: 2px solid black;
+	margin-bottom: 25px;
+	background: linear-gradient(
+      to top left, 
+      orange, #FFFFCC
+    );
+    overflow: hidden;
+    height: 82px;
+}
+
+h1 {
+	float: left;
+	margin: 0;
+	margin-top: 15px;
+	font-weight: lighter;
+  	font-size: 48px;
+  	margin-left: 12px;
+}
+
+.form-group {
+	width: 500px;
+	margin: 0 auto;
+}
+
+.form-group.buttons {
+	padding-left: 175px;
+}
+
+.form-group.buttons a button {
+	background: rgba(255, 50, 50, 0.5);
+	border-color: rgba(255, 50, 50, 0.5);
+}
+
+.form-group.buttons a button:hover {
+	background: rgba(255, 50, 50, 0.8);
+}
