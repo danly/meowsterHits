@@ -305,6 +305,7 @@ h1 {
 	width: 83px;
 	padding: 0;
 	right: 10px;
+	color: black;
 	display: none;
 }
 .logout button{
@@ -313,4 +314,19 @@ h1 {
 	border-color: bisque;
 	background: snow;
 	outline: none;
+}
+
+
+.loggedin {
+	position: absolute;
+	top: 16px;
+	font-weight: 300;
+	font-size: 25px;
+	right: 105px;
+	color: black;
+	display: none;
+}
+
+.loggedin:hover {
+	background-color: rgba(0,0,0,0.2);
 }

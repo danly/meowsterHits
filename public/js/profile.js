@@ -3,7 +3,7 @@ $(function () {
 
 	$.get('/profile.json', function(res){ 
 		var user = JSON.parse(res);
-		$(".username").html("Hi " + user.username)
+		$(".username").html("Meow " + user.username + "!")
 		render(user, "scoreswrapper", "scores-template");
 	});
 	

@@ -420,12 +420,9 @@ $(function(){
 			console.log('removing login')
 			$('.logout').show();
 			$(".header form").hide();
-			$(".userSignup").text("Hello " + username)
-			$(".userSignup").css({ "position": "relative",
-								   "overflow": "hidden",
-								   "font-size": "21px",
-								   "margin-bottom": "0px",
-								   "bottom": "25px"})
+			$(".userSignup").hide();
+			$(".loggedin").html(username).show()
+
 		}
 
 });
