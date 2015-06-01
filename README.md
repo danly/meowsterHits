@@ -2,6 +2,8 @@
 #meowsterhits
 ##WDI Project 1 - Individual
 
+meowsterhits is a game where the goal is to clear all the stacks as fast as possible. One button lowers the stack up to the cat and the second moves onto the next stack. 
+
 [Click here to try the game!](https://meowsterhits.herokuapp.com/)
 
 ###Technologies Used
