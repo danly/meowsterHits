@@ -188,13 +188,12 @@ function Game () {
 
 				//reset button event
 
-				$('.reset').click(function (event) {
-					that.reset(that, time);
-				})
+				// $('.reset').click(function (event) {
+				// 	that.reset(that, time);
+				// })
 				// ------------------------------------
 				
 			}, 3000)
-
 		})
 
 
@@ -424,5 +423,10 @@ $(function(){
 			$(".loggedin").html(username).show()
 
 		}
+
+	$('.reset').click(function (event) {
+		location.reload();
+	})
+
 
 });
